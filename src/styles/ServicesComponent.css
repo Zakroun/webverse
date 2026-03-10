@@ -1,0 +1,522 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+    --ink: #0a0a0a;
+    --cream: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --rust: #8b3a2a;
+    --muted: #7a7060;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.svc-root {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Grain */
+.svc-root::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.4;
+}
+
+/* Ambient blobs */
+.svc-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(130px);
+    pointer-events: none;
+}
+
+.svc-blob-1 {
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, transparent 70%);
+    top: -200px;
+    left: -200px;
+    animation: blobDrift1 20s ease-in-out infinite;
+}
+
+.svc-blob-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 58, 42, 0.08) 0%, transparent 70%);
+    bottom: 0;
+    right: -100px;
+    animation: blobDrift2 25s ease-in-out infinite;
+}
+
+@keyframes blobDrift1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(80px, 60px);
+    }
+}
+
+@keyframes blobDrift2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-60px, -80px);
+    }
+}
+
+/* Geo grid lines */
+.svc-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.svc-grid-h {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(201, 168, 76, 0.08) 30%, rgba(201, 168, 76, 0.08) 70%, transparent 100%);
+}
+
+.svc-grid-v {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, rgba(201, 168, 76, 0.07) 30%, rgba(201, 168, 76, 0.07) 70%, transparent 100%);
+}
+
+/* Layout */
+.svc-inner {
+    position: relative;
+    z-index: 10;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 8rem 5% 7rem;
+}
+
+/* Header */
+.svc-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 6rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.svc-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s ease forwards;
+}
+
+.svc-eyebrow-line {
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+}
+
+.svc-eyebrow-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.svc-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.06;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.25s ease forwards;
+}
+
+.svc-headline em {
+    font-style: italic;
+    color: var(--gold);
+}
+
+.svc-headline .outline {
+    -webkit-text-stroke: 1px rgba(245, 240, 232, 0.3);
+    color: transparent;
+}
+
+.svc-header-right {
+    max-width: 380px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s ease forwards;
+}
+
+.svc-header-right p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+}
+
+.svc-header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    text-transform: uppercase;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: gap 0.3s;
+    padding: 0;
+}
+
+.svc-header-cta:hover {
+    gap: 1.2rem;
+}
+
+.svc-cta-arrow {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(245, 240, 232, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.svc-header-cta:hover .svc-cta-arrow {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* Divider */
+.svc-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201, 168, 76, 0.2) 0%, rgba(201, 168, 76, 0.05) 100%);
+    margin-bottom: 0;
+    opacity: 0;
+    animation: fadeIn 0.8s 0.5s ease forwards;
+}
+
+/* Services accordion list */
+.svc-list {
+    list-style: none;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.6s ease forwards;
+}
+
+.svc-item {
+    border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+    overflow: hidden;
+    transition: background 0.4s;
+    cursor: pointer;
+}
+
+.svc-item:hover,
+.svc-item.active {
+    background: rgba(201, 168, 76, 0.03);
+}
+
+.svc-item-header {
+    display: grid;
+    grid-template-columns: 60px 1fr auto auto;
+    align-items: center;
+    gap: 2rem;
+    padding: 2.2rem 1.5rem;
+    transition: all 0.3s;
+}
+
+.svc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.svc-item:hover .svc-num,
+.svc-item.active .svc-num {
+    opacity: 1;
+}
+
+.svc-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.svc-icon-badge {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    transition: all 0.3s;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    background: rgba(201, 168, 76, 0.04);
+}
+
+.svc-item:hover .svc-icon-badge,
+.svc-item.active .svc-icon-badge {
+    background: rgba(201, 168, 76, 0.12);
+    border-color: rgba(201, 168, 76, 0.4);
+}
+
+.svc-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    font-weight: 700;
+    color: var(--cream);
+    transition: color 0.3s;
+}
+
+.svc-item:hover .svc-name {
+    color: #fff;
+}
+
+.svc-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.svc-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid rgba(122, 112, 96, 0.25);
+    padding: 0.25rem 0.65rem;
+    transition: all 0.3s;
+}
+
+.svc-item:hover .svc-tag,
+.svc-item.active .svc-tag {
+    border-color: rgba(201, 168, 76, 0.25);
+    color: rgba(201, 168, 76, 0.7);
+}
+
+.svc-toggle {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: all 0.35s;
+}
+
+.svc-item.active .svc-toggle {
+    transform: rotate(45deg);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+/* Expanded panel */
+.svc-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.svc-item.active .svc-panel {
+    grid-template-rows: 1fr;
+}
+
+.svc-panel-inner {
+    overflow: hidden;
+}
+
+.svc-panel-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 0 1.5rem 2.5rem;
+    padding-left: calc(60px + 2rem + 1.5rem);
+}
+
+.svc-panel-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.85;
+    font-weight: 300;
+    border-left: 2px solid rgba(201, 168, 76, 0.2);
+    padding-left: 1.2rem;
+}
+
+.svc-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.svc-feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
+    color: rgba(245, 240, 232, 0.6);
+    letter-spacing: 0.03em;
+}
+
+.svc-feature::before {
+    content: '◆';
+    font-size: 0.45rem;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+/* Bottom strip — philosophy */
+.svc-philosophy {
+    margin-top: 7rem;
+    border: 1px solid rgba(201, 168, 76, 0.1);
+    padding: 3.5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr 2px 1fr;
+    gap: 3rem;
+    align-items: center;
+    background: rgba(201, 168, 76, 0.02);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.8s ease forwards;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+}
+
+.svc-divider-v {
+    height: 60px;
+    width: 1px;
+    background: rgba(201, 168, 76, 0.15);
+    justify-self: center;
+}
+
+.svc-philo-item {
+    text-align: center;
+}
+
+.svc-philo-icon {
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    opacity: 0.7;
+}
+
+.svc-philo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.svc-philo-text {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .svc-inner {
+        padding: 5rem 5% 4rem;
+    }
+
+    .svc-header {
+        margin-bottom: 3.5rem;
+    }
+
+    .svc-item-header {
+        grid-template-columns: 40px 1fr auto;
+        gap: 1rem;
+    }
+
+    .svc-tags {
+        display: none;
+    }
+
+    .svc-panel-content {
+        grid-template-columns: 1fr;
+        padding-left: 1.5rem;
+    }
+
+    .svc-philosophy {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2.5rem 2rem;
+        clip-path: none;
+    }
+
+    .svc-divider-v {
+        display: none;
+    }
+
+    .svc-headline {
+        font-size: 2.4rem;
+    }
+}

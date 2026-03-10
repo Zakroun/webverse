@@ -1,0 +1,1005 @@
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --ink: #0a0a0a;
+    --cream: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --rust: #8b3a2a;
+    --muted: #7a7060;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ow-root {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ink);
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Grain */
+  .ow-root::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.45;
+  }
+
+  /* Blobs */
+  .ow-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ow-blob-1 {
+    width: 700px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+    top: -100px;
+    right: -100px;
+    animation: owDrift1 22s ease-in-out infinite;
+  }
+
+  .ow-blob-2 {
+    width: 600px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 58, 42, 0.07) 0%, transparent 70%);
+    top: 40%;
+    left: -150px;
+    animation: owDrift2 26s ease-in-out infinite;
+  }
+
+  .ow-blob-3 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
+    bottom: 10%;
+    right: 5%;
+    animation: owDrift3 20s ease-in-out infinite;
+  }
+
+  @keyframes owDrift1 {
+
+    0%,
+    100% {
+      transform: translate(0, 0)
+    }
+
+    50% {
+      transform: translate(-60px, 80px)
+    }
+  }
+
+  @keyframes owDrift2 {
+
+    0%,
+    100% {
+      transform: translate(0, 0)
+    }
+
+    50% {
+      transform: translate(80px, -60px)
+    }
+  }
+
+  @keyframes owDrift3 {
+
+    0%,
+    100% {
+      transform: translate(0, 0)
+    }
+
+    50% {
+      transform: translate(-50px, 60px)
+    }
+  }
+
+  /* Grid lines */
+  .ow-grid {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .ow-grid-h {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.06) 30%, rgba(201, 168, 76, 0.06) 70%, transparent);
+  }
+
+  .ow-grid-v {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(201, 168, 76, 0.05) 30%, rgba(201, 168, 76, 0.05) 70%, transparent);
+  }
+
+  .ow-page {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ─────────────────────────────
+     HERO
+  ───────────────────────────── */
+  .ow-hero {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 8rem 5% 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: end;
+    padding-bottom: 5rem;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+  }
+
+  .ow-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: owFadeUp 0.7s 0.1s ease forwards;
+  }
+
+  .ow-eyebrow-line {
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .ow-eyebrow-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .ow-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.04;
+    opacity: 0;
+    animation: owFadeUp 0.85s 0.25s ease forwards;
+  }
+
+  .ow-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .ow-headline .outline {
+    -webkit-text-stroke: 1px rgba(245, 240, 232, 0.25);
+    color: transparent;
+  }
+
+  .ow-hero-right {
+    opacity: 0;
+    animation: owFadeUp 0.85s 0.4s ease forwards;
+    padding-bottom: 0.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .ow-hero-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  /* Stat row */
+  .ow-hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201, 168, 76, 0.08);
+  }
+
+  .ow-hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .ow-hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1;
+  }
+
+  .ow-hero-stat-num span {
+    color: var(--gold);
+  }
+
+  .ow-hero-stat-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─────────────────────────────
+     FILTER BAR
+  ───────────────────────────── */
+  .ow-filter-bar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.08);
+  }
+
+  .ow-filter-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    opacity: 0;
+    animation: owFadeUp 0.8s 0.5s ease forwards;
+  }
+
+  .ow-filters {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .ow-filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding: 1.1rem 1.4rem;
+    position: relative;
+    transition: color 0.3s;
+    white-space: nowrap;
+  }
+
+  .ow-filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .ow-filter-btn:hover {
+    color: var(--cream);
+  }
+
+  .ow-filter-btn.active {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .ow-filter-btn.active::after {
+    transform: scaleX(1);
+  }
+
+  .ow-filter-count {
+    font-size: 0.72rem;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+    letter-spacing: 0.08em;
+  }
+
+  .ow-filter-count span {
+    color: var(--gold);
+  }
+
+  /* ─────────────────────────────
+     WORK GRID
+  ───────────────────────────── */
+  .ow-grid-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 5rem 5% 7rem;
+  }
+
+  /* Masonry-ish layout using CSS grid areas */
+  .ow-work-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5px;
+    opacity: 0;
+    animation: owFadeUp 0.9s 0.6s ease forwards;
+  }
+
+  /* ─────────────────────────────
+     WORK CARD
+  ───────────────────────────── */
+  .ow-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(201, 168, 76, 0.08);
+    background: rgba(245, 240, 232, 0.02);
+    transition: border-color 0.4s;
+  }
+
+  .ow-card:hover {
+    border-color: rgba(201, 168, 76, 0.28);
+    z-index: 2;
+  }
+
+  /* Grid spans */
+  .ow-span-7 {
+    grid-column: span 7;
+  }
+
+  .ow-span-5 {
+    grid-column: span 5;
+  }
+
+  .ow-span-4 {
+    grid-column: span 4;
+  }
+
+  .ow-span-8 {
+    grid-column: span 8;
+  }
+
+  .ow-span-6 {
+    grid-column: span 6;
+  }
+
+  .ow-span-12 {
+    grid-column: span 12;
+  }
+
+  /* Heights */
+  .ow-h-tall {
+    min-height: 520px;
+  }
+
+  .ow-h-mid {
+    min-height: 380px;
+  }
+
+  .ow-h-short {
+    min-height: 280px;
+  }
+
+  .ow-h-wide {
+    min-height: 340px;
+  }
+
+  /* Visual background */
+  .ow-card-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ow-card:hover .ow-card-bg {
+    transform: scale(1.04);
+  }
+
+  /* Abstract geo shapes inside */
+  .ow-card-shapes {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .ow-shape-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(201, 168, 76, 0.08);
+  }
+
+  .ow-shape-icon {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 4rem;
+    color: rgba(201, 168, 76, 0.1);
+    position: relative;
+    z-index: 1;
+  }
+
+  .ow-span-7 .ow-shape-icon,
+  .ow-span-8 .ow-shape-icon {
+    font-size: 7rem;
+  }
+
+  /* Overlay gradient */
+  .ow-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+        rgba(10, 10, 10, 0.92) 0%,
+        rgba(10, 10, 10, 0.3) 50%,
+        rgba(10, 10, 10, 0.05) 100%);
+    opacity: 0.75;
+    transition: opacity 0.4s;
+  }
+
+  .ow-card:hover .ow-card-overlay {
+    opacity: 0.88;
+  }
+
+  /* Top bar — year + category */
+  .ow-card-top {
+    position: absolute;
+    top: 1.4rem;
+    left: 1.4rem;
+    right: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: all 0.4s;
+    z-index: 5;
+  }
+
+  .ow-card:hover .ow-card-top {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ow-card-year {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(201, 168, 76, 0.6);
+    font-weight: 500;
+  }
+
+  .ow-card-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    background: rgba(10, 10, 10, 0.4);
+  }
+
+  .ow-card:hover .ow-card-arrow {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
+
+  /* Bottom info */
+  .ow-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.8rem 1.6rem;
+    transform: translateY(6px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+  }
+
+  .ow-card:hover .ow-card-info {
+    transform: translateY(0);
+  }
+
+  .ow-card-cat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.45rem;
+  }
+
+  .ow-card-cat::before {
+    content: '';
+    width: 14px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .ow-card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.2;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+  }
+
+  .ow-span-7 .ow-card-title,
+  .ow-span-8 .ow-card-title {
+    font-size: 1.7rem;
+  }
+
+  .ow-card:hover .ow-card-title {
+    color: #fff;
+  }
+
+  .ow-card-desc {
+    font-size: 0.8rem;
+    color: rgba(245, 240, 232, 0.5);
+    line-height: 1.65;
+    font-weight: 300;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s, margin-top 0.3s;
+  }
+
+  .ow-card:hover .ow-card-desc {
+    max-height: 80px;
+    opacity: 1;
+    margin-top: 0.5rem;
+  }
+
+  /* Tag chips inside card */
+  .ow-card-chips {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s;
+  }
+
+  .ow-card:hover .ow-card-chips {
+    max-height: 40px;
+    opacity: 1;
+  }
+
+  .ow-card-chip {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(201, 168, 76, 0.6);
+    border: 1px solid rgba(201, 168, 76, 0.18);
+    padding: 0.2rem 0.55rem;
+  }
+
+  /* Featured ribbon */
+  .ow-featured-ribbon {
+    position: absolute;
+    top: 1.4rem;
+    left: 1.4rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+    z-index: 6;
+  }
+
+  /* ─────────────────────────────
+     CASE STUDY ROW (horizontal)
+  ───────────────────────────── */
+  .ow-case-row {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(201, 168, 76, 0.08);
+    opacity: 0;
+    animation: owFadeUp 0.9s 0.75s ease forwards;
+  }
+
+  .ow-case-item {
+    display: grid;
+    grid-template-columns: 280px 1fr auto;
+    align-items: center;
+    gap: 3rem;
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.06);
+    cursor: pointer;
+    transition: background 0.3s;
+    position: relative;
+  }
+
+  .ow-case-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.35s;
+  }
+
+  .ow-case-item:hover {
+    background: rgba(201, 168, 76, 0.03);
+  }
+
+  .ow-case-item:hover::before {
+    transform: scaleY(1);
+  }
+
+  .ow-case-thumb {
+    height: 120px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(201, 168, 76, 0.08);
+    flex-shrink: 0;
+    transition: border-color 0.3s;
+  }
+
+  .ow-case-item:hover .ow-case-thumb {
+    border-color: rgba(201, 168, 76, 0.25);
+  }
+
+  .ow-case-thumb-bg {
+    position: absolute;
+    inset: 0;
+    transition: transform 0.5s;
+  }
+
+  .ow-case-item:hover .ow-case-thumb-bg {
+    transform: scale(1.06);
+  }
+
+  .ow-case-thumb-shapes {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ow-case-thumb-icon {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: rgba(201, 168, 76, 0.15);
+  }
+
+  .ow-case-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ow-case-cat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .ow-case-cat::before {
+    content: '';
+    width: 12px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .ow-case-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cream);
+    transition: color 0.3s;
+  }
+
+  .ow-case-item:hover .ow-case-title {
+    color: #fff;
+  }
+
+  .ow-case-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 500px;
+  }
+
+  .ow-case-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+  }
+
+  .ow-case-tag {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid rgba(122, 112, 96, 0.2);
+    padding: 0.2rem 0.55rem;
+    transition: all 0.3s;
+  }
+
+  .ow-case-item:hover .ow-case-tag {
+    border-color: rgba(201, 168, 76, 0.2);
+    color: rgba(201, 168, 76, 0.6);
+  }
+
+  .ow-case-result {
+    text-align: right;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .ow-case-result-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1;
+    transition: color 0.3s;
+  }
+
+  .ow-case-item:hover .ow-case-result-num {
+    color: var(--gold);
+  }
+
+  .ow-case-result-label {
+    font-size: 0.68rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─────────────────────────────
+     CTA BAND
+  ───────────────────────────── */
+  .ow-cta-band {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 5% 7rem;
+    opacity: 0;
+    animation: owFadeUp 0.9s 0.85s ease forwards;
+  }
+
+  .ow-cta-inner {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(201, 168, 76, 0.12);
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.06) 0%, rgba(10, 10, 10, 0) 60%);
+    padding: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  }
+
+  .ow-cta-bg {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem;
+    font-weight: 900;
+    font-style: italic;
+    color: rgba(201, 168, 76, 0.04);
+    line-height: 1;
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .ow-cta-left {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ow-cta-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-top: 1.2rem;
+  }
+
+  .ow-cta-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .ow-cta-right {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .ow-cta-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 320px;
+  }
+
+  .ow-btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 1rem 2.4rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .ow-btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-light);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .ow-btn-primary:hover::after {
+    opacity: 1;
+  }
+
+  .ow-btn-primary span {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ow-btn-arrow {
+    position: relative;
+    z-index: 1;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: transform 0.3s;
+  }
+
+  .ow-btn-primary:hover .ow-btn-arrow {
+    transform: rotate(45deg);
+  }
+
+  @keyframes owFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .ow-hero {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .ow-span-7 {
+      grid-column: span 12;
+    }
+
+    .ow-span-5 {
+      grid-column: span 12;
+    }
+
+    .ow-span-8 {
+      grid-column: span 12;
+    }
+
+    .ow-span-4 {
+      grid-column: span 6;
+    }
+
+    .ow-case-item {
+      grid-template-columns: 200px 1fr;
+    }
+
+    .ow-case-result {
+      display: none;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .ow-span-4 {
+      grid-column: span 12;
+    }
+
+    .ow-span-6 {
+      grid-column: span 12;
+    }
+
+    .ow-case-item {
+      grid-template-columns: 1fr;
+    }
+
+    .ow-case-thumb {
+      height: 160px;
+    }
+
+    .ow-cta-inner {
+      padding: 2.5rem 2rem;
+      flex-direction: column;
+      clip-path: none;
+    }
+
+    .ow-headline {
+      font-size: 2.8rem;
+    }
+  }
