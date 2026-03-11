@@ -200,7 +200,7 @@ export default function Services() {
                                 <span className="sv-section-eyebrow-label">How We Compare</span>
                             </div>
                             <h2 className="sv-section-headline">
-                                Why <em>ForgeStudio</em><br />over the alternatives
+                                Why <em>webverse</em><br />over the alternatives
                             </h2>
                         </div>
                         <div className="sv-table-wrap">
@@ -208,7 +208,7 @@ export default function Services() {
                                 <thead className="sv-table-head">
                                     <tr>
                                         <th style={{ width: "38%" }}>What matters to you</th>
-                                        <th className="highlight">ForgeStudio</th>
+                                        <th className="highlight">webverse</th>
                                         <th>Traditional Agency</th>
                                         <th>Freelancer</th>
                                     </tr>
@@ -300,7 +300,7 @@ export default function Services() {
                         <div className="sv-pullquote-inner">
                             <div className="sv-quote-mark">"</div>
                             <p className="sv-quote-text">
-                                "Hiring ForgeStudio was the single best investment we made that year.
+                                "Hiring webverse was the single best investment we made that year.
                                 They didn't just build us a website — they built us a
                                 <strong> competitive advantage we still benefit from daily.</strong>"
                             </p>

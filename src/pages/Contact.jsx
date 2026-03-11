@@ -28,9 +28,9 @@ const faqs = [
 ];
 
 const contactCards = [
-    { icon: "◈", label: "Email us directly", value: "hello@forgestudio.co", href: "mailto:hello@forgestudio.co" },
-    { icon: "○", label: "Book a call", value: "calendly.com/forgestudio", href: "#" },
-    { icon: "⬡", label: "LinkedIn", value: "linkedin.com/company/forgestudio", href: "#" },
+    { icon: "◈", label: "Email us directly", value: "hello@webverse.co", href: "mailto:hello@webverse.co" },
+    { icon: "○", label: "Book a call", value: "calendly.com/webverse", href: "#" },
+    { icon: "⬡", label: "LinkedIn", value: "linkedin.com/company/webverse", href: "#" },
 ];
 
 const socials = ["𝕏", "in", "↗", "◈"];

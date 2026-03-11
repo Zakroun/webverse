@@ -80,7 +80,7 @@ export default function About() {
                             <span className="outline">the details</span>
                         </h1>
                         <p className="ab-hero-sub">
-                            ForgeStudio was built on a simple conviction: the internet is too
+                            webverse was built on a simple conviction: the internet is too
                             important to be left to mediocre design. We're a small, senior team
                             of designers, engineers and strategists who refuse to compromise on craft.
                         </p>
@@ -144,7 +144,7 @@ export default function About() {
                                 <em>far better</em>
                             </h2>
                             <p className="ab-story-body">
-                                ForgeStudio began in 2019 when our founders — frustrated by the
+                                webverse began in 2019 when our founders — frustrated by the
                                 gap between what was possible and what was being built — decided
                                 to create the studio they wished existed. No bloated process,
                                 no junior-heavy teams, no compromises in quality.
